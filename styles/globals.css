@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .body-1 {
+    @apply text-base font-normal leading-[23px] text-[#3A4374];
+  }
+  .body-2 {
+    @apply text-[15px] font-normal leading-[22px] text-[#3A4374];
+  }
+  .body-3 {
+    @apply text-[13px] font-semibold leading-[19px] text-[#3A4374];
+  }
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  background-color: #f7f8fd;
+  color: #3a4374;
+}
