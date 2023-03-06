@@ -62,3 +62,13 @@ export const editFeedbackRequest = async (
 
   return editedFeedbackRequest;
 };
+
+export const deleteFeedbackRequest = async (id: number) => {
+  const client = await connectDatabase();
+  const db = client.db("feedbackRequests");
+
+  const feedbackRequest = await db.collection("feedbackRequests").deleteOne({
+    id
+  });
+  return feedbackRequest;
+};

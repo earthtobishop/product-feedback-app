@@ -1,4 +1,8 @@
-import { editFeedbackRequest, getFeedbackRequest } from "@/lib/db-util";
+import {
+  deleteFeedbackRequest,
+  editFeedbackRequest,
+  getFeedbackRequest
+} from "@/lib/db-util";
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
 const handleGetFeedbackRequest: NextApiHandler = async (
@@ -28,12 +32,26 @@ const handleEditFeedbackRequest: NextApiHandler = async (
   }
 };
 
+const handleDeleteFeedbackRequest: NextApiHandler = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  try {
+    await deleteFeedbackRequest(Number(req.query.id));
+    res.json({ msg: "Invoice successfully deleted " });
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 async function handleRequests(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "GET":
       return handleGetFeedbackRequest(req, res);
     case "PUT":
       return handleEditFeedbackRequest(req, res);
+    case "DELETE":
+      return handleDeleteFeedbackRequest(req, res);
     default:
       res.status(405).end();
   }
