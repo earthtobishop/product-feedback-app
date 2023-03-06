@@ -30,3 +30,14 @@ export const getFeedbackRequests = async () => {
     .toArray();
   return feedbackRequests;
 };
+
+export const getFeedbackRequest = async (id: number) => {
+  const client = await connectDatabase();
+  const db = client.db("feedbackRequests");
+
+  const feedbackRequest = await db.collection("feedbackRequests").findOne({
+    id
+  });
+
+  return feedbackRequest;
+};

@@ -16,7 +16,7 @@ const handlePostFeedbackRequest: NextApiHandler = async (
   }
 };
 
-const handleGetFeedbackRequest: NextApiHandler = async (
+const handleGetFeedbackRequests: NextApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
@@ -33,7 +33,7 @@ async function handleRequests(req: NextApiRequest, res: NextApiResponse) {
     case "POST":
       return handlePostFeedbackRequest(req, res);
     case "GET":
-      return handleGetFeedbackRequest(req, res);
+      return handleGetFeedbackRequests(req, res);
     default:
       res.status(405).end();
   }
