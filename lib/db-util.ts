@@ -41,3 +41,24 @@ export const getFeedbackRequest = async (id: number) => {
 
   return feedbackRequest;
 };
+
+export const editFeedbackRequest = async (
+  id: number,
+  feedbackRequest: FeedbackRequest
+) => {
+  const client = await connectDatabase();
+  const db = client.db("feedbackRequests");
+
+  const editedFeedbackRequest = await db
+    .collection("feedbackRequests")
+    .updateOne(
+      {
+        id
+      },
+      {
+        $set: feedbackRequest
+      }
+    );
+
+  return editedFeedbackRequest;
+};
