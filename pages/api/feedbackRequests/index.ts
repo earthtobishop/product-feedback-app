@@ -1,4 +1,4 @@
-import { createFeedbackRequest } from "@/lib/db-util";
+import { createFeedbackRequest, getFeedbackRequests } from "@/lib/db-util";
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
 const handlePostFeedbackRequest: NextApiHandler = async (
@@ -6,7 +6,7 @@ const handlePostFeedbackRequest: NextApiHandler = async (
   res: NextApiResponse
 ) => {
   try {
-    const feedbackRequest = await createFeedbackRequest(req.body);
+    await createFeedbackRequest(req.body);
     res.json({
       msg: "Feedback Request Successfully Created",
       feedbackRequest: req.body
@@ -16,10 +16,24 @@ const handlePostFeedbackRequest: NextApiHandler = async (
   }
 };
 
+const handleGetFeedbackRequest: NextApiHandler = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  try {
+    const feedbackRequests = await getFeedbackRequests();
+    res.json(feedbackRequests);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 async function handleRequests(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "POST":
       return handlePostFeedbackRequest(req, res);
+    case "GET":
+      return handleGetFeedbackRequest(req, res);
     default:
       res.status(405).end();
   }

@@ -18,3 +18,15 @@ export const createFeedbackRequest = async (
 
   return createdRequest;
 };
+
+export const getFeedbackRequests = async () => {
+  const client = await connectDatabase();
+  const db = client.db("feedbackRequests");
+
+  const feedbackRequests = await db
+    .collection("feedbackRequests")
+    .find({})
+    .limit(20)
+    .toArray();
+  return feedbackRequests;
+};
