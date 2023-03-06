@@ -1,6 +1,12 @@
 import { ObjectId } from "mongodb";
 
-type Category = "suggestion" | "ui" | "ux" | "enhancement" | "bug" | "feature";
+export type Category =
+  | "suggestion"
+  | "ui"
+  | "ux"
+  | "enhancement"
+  | "bug"
+  | "feature";
 type Status = "planned" | "in-progress" | "live";
 
 export type CurrentUser = {
