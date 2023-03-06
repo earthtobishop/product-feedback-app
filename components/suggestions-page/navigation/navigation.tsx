@@ -24,7 +24,7 @@ const Navigation: FC = () => {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        <RoadmapMenu />
+        <RoadmapMenu planned={0} inProgress={0} live={0} />
       </div>
     </div>
   );
